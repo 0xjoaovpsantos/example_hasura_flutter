@@ -1,3 +1,5 @@
+import 'package:example_hasura_flutter/app/modules/add_produto/models/tipo_categoria_produto_dto.dart';
+import 'package:example_hasura_flutter/app/modules/add_produto/repositories/add_produto_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'add_produto_controller.g.dart';
@@ -5,11 +7,14 @@ part 'add_produto_controller.g.dart';
 class AddProdutoController = _AddProdutoBase with _$AddProdutoController;
 
 abstract class _AddProdutoBase with Store {
-  @observable
-  int value = 0;
+  final AddProdutoRepository addProdutoRepository;
 
-  @action
-  void increment() {
-    value++;
+  _AddProdutoBase(this.addProdutoRepository) {
+    addProdutoRepository.getTipoCategoriaProduto().then((data) {
+      tipoProduto = data;
+    });
   }
+
+  @observable
+  TipoCategoriaProdutoDto tipoProduto;
 }

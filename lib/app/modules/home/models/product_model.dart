@@ -13,8 +13,8 @@ class ProductModel {
   String id;
   int valor;
   String nome;
-  GenericAttribute tipoProduto;
-  GenericAttribute categoriaProduto;
+  TipoOuCategoriaDTO tipoProduto;
+  TipoOuCategoriaDTO categoriaProduto;
 
   ProductModel({
     this.id,
@@ -28,8 +28,9 @@ class ProductModel {
         id: json["id"],
         valor: json["valor"],
         nome: json["nome"],
-        tipoProduto: GenericAttribute.fromJson(json["tipo_produto"]),
-        categoriaProduto: GenericAttribute.fromJson(json["categoria_produto"]),
+        tipoProduto: TipoOuCategoriaDTO.fromJson(json["tipo_produto"]),
+        categoriaProduto:
+            TipoOuCategoriaDTO.fromJson(json["categoria_produto"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,15 +49,15 @@ class ProductModel {
   }
 }
 
-class GenericAttribute {
+class TipoOuCategoriaDTO {
   String descricao;
 
-  GenericAttribute({
+  TipoOuCategoriaDTO({
     this.descricao,
   });
 
-  factory GenericAttribute.fromJson(Map<String, dynamic> json) =>
-      GenericAttribute(
+  factory TipoOuCategoriaDTO.fromJson(Map<String, dynamic> json) =>
+      TipoOuCategoriaDTO(
         descricao: json["descricao"],
       );
 
